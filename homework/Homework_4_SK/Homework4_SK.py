@@ -13,7 +13,7 @@ my_dict['list'].append(13)
 my_dict['list'].pop(1)
 print(my_dict['list'])
 
-(my_dict['dict'])['i am a tuple'] = 'added'
+my_dict['dict'][('i am a tuple',)] = 'added'
 my_dict['dict'].pop('milk')
 print(my_dict['dict'])
 
