@@ -18,8 +18,6 @@ n3 = int(result_program[result_program.index('9'):]) + 10
 
 print(n1, n2, n3)
 
-
-
 # ЗАДАНИЕ 3
 
 students = ['Ivanov', 'Petrov', 'Sidorov']
