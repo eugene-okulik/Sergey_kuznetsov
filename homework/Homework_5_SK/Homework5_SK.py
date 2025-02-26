@@ -1,11 +1,11 @@
-#ЗАДАНИЕ 1
+# ЗАДАНИЕ 1
 
 person = ['John', 'Doe', 'New York', '+1372829383739', 'US']
 name, last_name, city, phone, country = person
 
 print(name, last_name, city, phone, country)
 
-#ЗАДАНИЕ 2
+# ЗАДАНИЕ 2
 
 result_operation = 'результат операции: 42'
 result_operation2 = 'результат операции: 514'
@@ -20,7 +20,7 @@ print(n1, n2, n3)
 
 
 
-#ЗАДАНИЕ 3
+# ЗАДАНИЕ 3
 
 students = ['Ivanov', 'Petrov', 'Sidorov']
 
