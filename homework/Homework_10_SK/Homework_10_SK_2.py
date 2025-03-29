@@ -1,14 +1,12 @@
-def repeat_me(func):
-    def wrapper(*args):
-        func(*args)
-
+def repeat_me(fun):
+    def wrapper(text, count=2):
+        for i in range(count):
+            fun(text)
     return wrapper
 
 
 @repeat_me
-def example(text, count=2):
-    for i in range(count):
-        print(text)
+def example(text):
+    print(text)
 
-
-example('print me')
+example('print me', count=2)
