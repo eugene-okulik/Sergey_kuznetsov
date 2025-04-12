@@ -12,8 +12,8 @@ class Book:
     def __str__(self):
         reserved_status = 'зарезервировано' if self.reserved else ''
         return (
-                f'Название: {self.book_name}, Автор: {self.book_avtor}, Страницы: {self.page_count}, ISBN: {self.isbn}' +
-                (f', {reserved_status}' if reserved_status else ''))
+                f'Название: {self.book_name}, Автор: {self.book_avtor}, Страницы: {self.page_count}, ISBN: {self.isbn}'
+                + (f', {reserved_status}' if reserved_status else ''))
 
 
 book_one = Book('Идиот', 'Достоевский', 500, '7320-1162', reserved=True)
