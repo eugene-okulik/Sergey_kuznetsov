@@ -12,8 +12,10 @@ class Book:
     def __str__(self):
         reserved_status = 'зарезервировано' if self.reserved else ''
         return (
-                f'Название: {self.book_name}, Автор: {self.book_avtor}, Страницы: {self.page_count}, ISBN: {self.isbn}'
-                + (f', {reserved_status}' if reserved_status else ''))
+                f'Название: {self.book_name}, Автор: {self.book_avtor}, '
+                f'Страницы: {self.page_count}, ISBN: {self.isbn}'
+                + (f', {reserved_status}' if reserved_status else '')
+        )
 
 
 book_one = Book('Идиот', 'Достоевский', 500, '7320-1162', reserved=True)
@@ -38,9 +40,11 @@ class School_book(Book):
 
     def __str__(self):
         reserved_status = 'зарезервировано' if self.reserved else ''
-        return (f'Название книги: {self.book_name}, Автор: {self.book_avtor}, Количество страниц: {self.page_count},'
+        return (
+                f'Название книги: {self.book_name}, Автор: {self.book_avtor}, Количество страниц: {self.page_count},'
                 f'ISBN: {self.isbn} Предмет: {self.subject}, Номер класса: {self.class_number},'
-                f' Упражнения: {self.exercise}' + (f', {reserved_status}' if reserved_status else ''))
+                f' Упражнения: {self.exercise}' + (f', {reserved_status}' if reserved_status else '')
+        )
 
 
 p_one = School_book('Алгебра', 'Малявкин', 123, '123123-123-33',
