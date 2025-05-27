@@ -1,5 +1,5 @@
 import os.path
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 from future.backports.datetime import datetime
 
