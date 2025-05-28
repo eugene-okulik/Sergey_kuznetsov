@@ -1,11 +1,12 @@
-import os.path
+import os
 from datetime import timedelta
+from datetime import datetime
 
-from future.backports.datetime import datetime
+base_path = os.path.dirname(__file__)
+homework_path = os.path.dirname(os.path.dirname(base_path))
+eugene_file_path = os.path.join(homework_path, 'eugene_okulik', 'hw_13', 'data.txt')
 
-file_path = os.path.join('/Users/user/Project/Sergey_kuznetsov/homework/eugene_okulik/hw_13/data.txt')
-
-with open(file_path, 'r') as data_file:
+with open(eugene_file_path, 'r') as data_file:
     first_line = data_file.readline().strip()
     second_line = data_file.readline().strip()
     third_line = data_file.readline().strip()
