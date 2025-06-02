@@ -1,0 +1,29 @@
+INSERT into students (name, second_name) values ('Sergey', 'Kuznetsov')
+
+INSERT into books (title, taken_by_student_id) VALUES ('Онегин', 20546)
+
+INSERT into books (title, taken_by_student_id) VALUES ('Война и мир', 20546)
+
+insert INTO `groups` (title, start_date, end_date) VALUES ('Autotesters', 'Mar 2025', 'Dec 2025')
+
+UPDATE students set group_id = 5239 where id = 20546
+
+INSERT INTO subjets (title) VALUES ('Математика'), ('Физика'), ('Физкультура')
+
+INSERT INTO lessons (title, subject_id) VALUES ('Умножение', 10823), ('Сложение', 10823),
+('Закон Ома',10824), ('Закон Ньютона',10824), ('Прыжки', 10825), ('Бег', 10825)
+
+INSERT INTO marks (value, lesson_id, student_id) VALUES (4, 11237, 20546), (4, 11238, 20546), (3, 11239, 20546),
+(3, 11240, 20546), (5, 11241, 20546), (5, 11242, 20546)
+
+Select value from marks where student_id = 20546
+
+SELECT title from books where taken_by_student_id = 20546
+
+Select s.name, s.second_name, g.title, b.title, m.value, l.title, s2.title
+from students s join `groups` g on s.group_id = g.id
+join books b on s.id = b.taken_by_student_id
+join marks m on s.id = m.student_id
+join lessons l on l.id = m.lesson_id
+join subjets s2 on s2.id = l.subject_id
+where s.name = 'Sergey' and s.second_name = 'Kuznetsov'
