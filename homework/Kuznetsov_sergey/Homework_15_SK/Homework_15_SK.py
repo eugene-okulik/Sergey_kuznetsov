@@ -35,12 +35,12 @@ print(cursor.fetchone())
 db.commit()
 
 cursor.execute("UPDATE students set group_id = 5341 where id = 20662")
-cursor.execute(f'SELECT * from students where id = 20662')
+cursor.execute('SELECT * from students where id = 20662')
 print(cursor.fetchone())
 db.commit()
 
 cursor.execute("INSERT INTO subjets (title) VALUES ('ИЗО'), ('Музыка'), ('Ин.яз')")
-cursor.execute(f'SELECT * from subjets')
+cursor.execute('SELECT * from subjets')
 print(cursor.fetchall())
 db.commit()
 
@@ -56,7 +56,7 @@ cursor.executemany(
     ]
 )
 
-cursor.execute(f'SELECT * from lessons')
+cursor.execute('SELECT * from lessons')
 print(cursor.fetchall())
 db.commit()
 
@@ -72,7 +72,7 @@ cursor.executemany(
     ]
 )
 
-cursor.execute(f'SELECT * from marks')
+cursor.execute('SELECT * from marks')
 print(cursor.fetchall())
 db.commit()
 
