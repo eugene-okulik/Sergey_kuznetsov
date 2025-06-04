@@ -88,12 +88,12 @@ print(' '.join(res2))
 
 select_query = '''
 Select s.name, s.second_name, g.title, b.title, m.value, l.title, s2.title
-from students s join `groups` g on s.group_id = g.id 
-join books b on s.id = b.taken_by_student_id  
-join marks m on s.id = m.student_id 
-join lessons l on l.id = m.lesson_id 
-join subjets s2 on s2.id = l.subject_id 
-where s.id = 20662 
+from students s join `groups` g on s.group_id = g.id
+join books b on s.id = b.taken_by_student_id
+join marks m on s.id = m.student_id
+join lessons l on l.id = m.lesson_id
+join subjets s2 on s2.id = l.subject_id
+where s.id = 20662
 '''
 
 cursor.execute(select_query)
