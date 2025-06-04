@@ -24,7 +24,7 @@ cursor.executemany(
     ]
 )
 
-cursor.execute(f'SELECT * from books')
+cursor.execute('SELECT * from books')
 print(cursor.fetchall())
 db.commit()
 
