@@ -38,7 +38,7 @@ end_date = input("Дата окончания: ")
 cursor.execute("insert INTO `groups` (title, start_date, end_date) VALUES (%s, %s, %s)",
                (gr_title, start_date, end_date))
 gr_id = cursor.lastrowid
-cursor.execute(f'SELECT * from `groups` where id = %s', (gr_id,))
+cursor.execute('SELECT * from `groups` where id = %s', (gr_id,))
 print(cursor.fetchone())
 db.commit()
 
