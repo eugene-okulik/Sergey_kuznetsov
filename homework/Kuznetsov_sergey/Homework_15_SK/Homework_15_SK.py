@@ -10,78 +10,84 @@ db = mysql.connect(
 
 cursor = db.cursor()
 
-cursor.execute("INSERT INTO students (name, second_name) VALUES ('Сергей', 'Кузнецов')")
+name = input("Имя: ")
+second_name = input("Фамилия: ")
+
+cursor.execute("INSERT INTO students (name, second_name) VALUES (%s, %s)", (name, second_name))
 stud_id = cursor.lastrowid
-cursor.execute(f'SELECT * from students where id = {stud_id}')
+cursor.execute('SELECT * from students where id = %s', (stud_id,))
 print(cursor.fetchone())
 db.commit()
 
+book_titles = []
+for i in range(2):
+    title = input(f"Название книги {i + 1}: ")
+    book_titles.append((title, stud_id))
+
 insert_query = "INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)"
-cursor.executemany(
-    insert_query, [
-        ('Book1', 20662),
-        ('Book2', 20662)
-    ]
-)
+cursor.executemany(insert_query, book_titles)
 
 cursor.execute('SELECT * from books')
 print(cursor.fetchall())
 db.commit()
 
-cursor.execute("insert INTO `groups` (title, start_date, end_date) VALUES ('Gr Auto', 'Mar 13', 'Dec 25')")
+gr_title = input("Название группы: ")
+start_date = input("Дата начала: ")
+end_date = input("Дата окончания: ")
+
+cursor.execute("insert INTO `groups` (title, start_date, end_date) VALUES (%s, %s, %s)",
+               (gr_title, start_date, end_date))
 gr_id = cursor.lastrowid
-cursor.execute(f'SELECT * from `groups` where id = {gr_id}')
+cursor.execute(f'SELECT * from `groups` where id = %s', (gr_id,))
 print(cursor.fetchone())
 db.commit()
 
-cursor.execute("UPDATE students set group_id = 5341 where id = 20662")
-cursor.execute('SELECT * from students where id = 20662')
+cursor.execute("UPDATE students set group_id = %s where id = %s", (gr_id, stud_id))
+cursor.execute('SELECT * from students where id = %s', (stud_id,))
 print(cursor.fetchone())
 db.commit()
 
-cursor.execute("INSERT INTO subjets (title) VALUES ('ИЗО'), ('Музыка'), ('Ин.яз')")
+subjects_titles = []
+for i in range(3):
+    title = input(f"Название предмета {i + 1}: ")
+    subjects_titles.append((title,))
+
+cursor.executemany("INSERT INTO subjets (title) VALUES (%s)", subjects_titles)
 cursor.execute('SELECT * from subjets')
 print(cursor.fetchall())
 db.commit()
 
-insert_query = "INSERT INTO lessons (title, subject_id) VALUES (%s, %s)"
-cursor.executemany(
-    insert_query, [
-        ('Урок 1', 10837),
-        ('Урок 2', 10837),
-        ('Урок 3', 10838),
-        ('Урок 4', 10838),
-        ('Урок 5', 10839),
-        ('Урок 6', 10839)
-    ]
-)
+lessons_titles = []
+for i in range(6):
+    title = input(f"Название урока {i + 1}: ")
+    subjects_id = input("Введите ID предмета: ")
+    lessons_titles.append((title, subjects_id))
 
+insert_query = "INSERT INTO lessons (title, subject_id) VALUES (%s, %s)"
+cursor.executemany(insert_query, lessons_titles)
 cursor.execute('SELECT * from lessons')
 print(cursor.fetchall())
 db.commit()
 
+mark_data = []
+for i in range(6):
+    value = input(f"Оценка {i + 1}: ")
+    lessons_id = input("Введите ID урока: ")
+    mark_data.append((value, lessons_id, stud_id))
+
 insert_query = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)"
-cursor.executemany(
-    insert_query, [
-        (4, 11261, 20662),
-        (4, 11262, 20662),
-        (3, 11263, 20662),
-        (3, 11264, 20662),
-        (5, 11265, 20662),
-        (5, 11266, 20662)
-    ]
-)
+cursor.executemany(insert_query, mark_data)
 
 cursor.execute('SELECT * from marks')
 print(cursor.fetchall())
 db.commit()
 
-cursor.execute("Select value from marks where student_id = 20662")
+cursor.execute("Select value from marks where student_id = %s", (stud_id,))
 data1 = cursor.fetchall()
 res1 = [item[0] for item in data1]
 print(' '.join(res1))
 
-cursor.execute("SELECT title from books where taken_by_student_id = 20662")
+cursor.execute("SELECT title from books where taken_by_student_id = %s", (stud_id,))
 data2 = cursor.fetchall()
 res2 = [item[0] for item in data2]
 print(' '.join(res2))
@@ -93,10 +99,10 @@ join books b on s.id = b.taken_by_student_id
 join marks m on s.id = m.student_id
 join lessons l on l.id = m.lesson_id
 join subjets s2 on s2.id = l.subject_id
-where s.id = 20662
+where s.id = %s
 '''
 
-cursor.execute(select_query)
+cursor.execute(select_query, (stud_id,))
 print(cursor.fetchall())
 
 db.close()
