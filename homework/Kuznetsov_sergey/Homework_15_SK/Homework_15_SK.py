@@ -26,7 +26,6 @@ for i in range(2):
 
 insert_query = "INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)"
 cursor.executemany(insert_query, book_titles)
-
 cursor.execute('SELECT * from books')
 print(cursor.fetchall())
 db.commit()
@@ -54,7 +53,9 @@ for i in range(3):
 
 cursor.executemany("INSERT INTO subjets (title) VALUES (%s)", subjects_titles)
 cursor.execute('SELECT * from subjets')
-print(cursor.fetchall())
+subjects = cursor.fetchall()
+for subject in subjects:
+    print(f"ID: {subject[0]}, Название: {subject[1]}")
 db.commit()
 
 lessons_titles = []
@@ -66,7 +67,9 @@ for i in range(6):
 insert_query = "INSERT INTO lessons (title, subject_id) VALUES (%s, %s)"
 cursor.executemany(insert_query, lessons_titles)
 cursor.execute('SELECT * from lessons')
-print(cursor.fetchall())
+lessons = cursor.fetchall()
+for lesson in lessons:
+    print(f"ID: {lesson[0]}, Название: {lesson[1]}")
 db.commit()
 
 mark_data = []
