@@ -26,8 +26,6 @@ for i in range(2):
 
 insert_query = "INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)"
 cursor.executemany(insert_query, book_titles)
-cursor.execute('SELECT * from books')
-print(cursor.fetchall())
 db.commit()
 
 gr_title = input("Название группы: ")
@@ -46,42 +44,43 @@ cursor.execute('SELECT * from students where id = %s', (stud_id,))
 print(cursor.fetchone())
 db.commit()
 
-subjects_titles = []
-for i in range(3):
-    title = input(f"Название предмета {i + 1}: ")
-    subjects_titles.append((title,))
+subjects_titles = [('Математика',), ('Русский',), ('Литература',)]
+insert_query = "INSERT INTO subjets (title) VALUES (%s)"
+subj_id = []
+for subject in subjects_titles:
+    cursor.execute(insert_query, subject)
+    subj_id.append(cursor.lastrowid)
+sub1, sub2, sub3 = subj_id
 
-cursor.executemany("INSERT INTO subjets (title) VALUES (%s)", subjects_titles)
-cursor.execute('SELECT * from subjets')
-subjects = cursor.fetchall()
-for subject in subjects:
-    print(f"ID: {subject[0]}, Название: {subject[1]}")
 db.commit()
 
-lessons_titles = []
-for i in range(6):
-    title = input(f"Название урока {i + 1}: ")
-    subjects_id = input("Введите ID предмета: ")
-    lessons_titles.append((title, subjects_id))
+lessons_titles = [('Первый', sub1), ('Второй', sub1),
+                  ('Третий', sub2), ('Четвертый', sub2),
+                  ('Пятый', sub3), ('Шестой', sub3)
+                  ]
 
 insert_query = "INSERT INTO lessons (title, subject_id) VALUES (%s, %s)"
-cursor.executemany(insert_query, lessons_titles)
-cursor.execute('SELECT * from lessons')
-lessons = cursor.fetchall()
-for lesson in lessons:
-    print(f"ID: {lesson[0]}, Название: {lesson[1]}")
+lessons_id = []
+for title in lessons_titles:
+    cursor.execute(insert_query, title)
+    lessons_id.append(cursor.lastrowid)
+les1, les2, les3, les4, les5, les6 = lessons_id
+
 db.commit()
 
-mark_data = []
-for i in range(6):
-    value = input(f"Оценка {i + 1}: ")
-    lessons_id = input("Введите ID урока: ")
-    mark_data.append((value, lessons_id, stud_id))
-
 insert_query = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)"
-cursor.executemany(insert_query, mark_data)
+cursor.executemany(
+    insert_query, [
+        ('5', les1, stud_id),
+        ('4', les2, stud_id),
+        ('5', les3, stud_id),
+        ('4', les4, stud_id),
+        ('5', les5, stud_id),
+        ('4', les6, stud_id),
+    ]
+)
 
-cursor.execute('SELECT * from marks')
+cursor.execute(f"SELECT * FROM marks WHERE student_id = {stud_id}")
 print(cursor.fetchall())
 db.commit()
 
