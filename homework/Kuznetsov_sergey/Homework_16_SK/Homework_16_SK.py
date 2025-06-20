@@ -30,12 +30,12 @@ with db.cursor() as cursor:
         join marks m on s.id = m.student_id
         join lessons l on l.id = m.lesson_id
         join subjets s2 on s2.id = l.subject_id
-        WHERE s.name = %s 
-        AND s.second_name = %s 
-        AND g.title = %s 
-        AND b.title = %s 
-        AND m.value = %s 
-        AND l.title = %s 
+        WHERE s.name = %s
+        AND s.second_name = %s
+        AND g.title = %s
+        AND b.title = %s
+        AND m.value = %s
+        AND l.title = %s
         AND s2.title = %s
         """
 
