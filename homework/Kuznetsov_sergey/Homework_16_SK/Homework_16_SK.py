@@ -12,9 +12,11 @@ db = mysql.connect(
     port=os.getenv('DB_PORT'),
     database=os.getenv('DB_NAME')
 )
+abs_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+abs_file_path = os.path.join(abs_path, "eugene_okulik", "Lesson_16", "hw_data", "data.csv")
 
-abs_path = "/Users/user/Project/Sergey_kuznetsov/homework/eugene_okulik/Lesson_16/hw_data/data.csv"
-with open(abs_path, newline='') as csv_file:
+
+with open(abs_file_path, newline='') as csv_file:
     file_data = list(csv.DictReader(csv_file))
     for row in file_data:
         print(row)
