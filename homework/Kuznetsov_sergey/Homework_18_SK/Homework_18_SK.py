@@ -7,7 +7,7 @@ def new_post():
     }
     headers = {'Content-Type': 'application/json'}
     response = requests.post("http://objapi.course.qa-practice.com/object",
-                             json = body,
+                             json=body,
                              headers=headers)
 
     return response.json()["id"]
@@ -20,7 +20,7 @@ def put_a_post():
     }
     headers = {'Content-Type': 'application/json'}
     response = requests.put(f"http://objapi.course.qa-practice.com/object/{post_id}",
-                             json = body,
+                             json=body,
                              headers=headers)
     print(response.text)
 
@@ -33,7 +33,7 @@ def patch_a_post():
     }
     headers = {'Content-Type': 'application/json'}
     response = requests.patch(f"http://objapi.course.qa-practice.com/object/{post_id}",
-                             json = body,
+                             json=body,
                              headers=headers)
     print(response.text)
 
