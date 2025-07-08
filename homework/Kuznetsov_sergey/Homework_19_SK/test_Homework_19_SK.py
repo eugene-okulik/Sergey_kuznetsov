@@ -7,8 +7,6 @@ import requests
     {"name": "Object 2", "data": {"test": 10}},
     {"name": "Object 3", "data": {"test": 5}}
 ])
-
-
 def new_post(request):
     headers = {'Content-Type': 'application/json'}
     response = requests.post(
