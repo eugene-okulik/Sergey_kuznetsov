@@ -27,7 +27,6 @@ def test_object(request):
     assert response.status_code == 200
     object_id = response.json()["id"]
     yield object_id
-
     requests.delete(f"{BASE_URL}/{object_id}")
 
 
@@ -36,8 +35,6 @@ def test_object(request):
     {"name": "Object 2", "data": {"test": 10}},
     {"name": "Object 3", "data": {"test": 5}}
 ])
-
-
 @pytest.mark.critical
 def test_post_a_post(test_data, start_end):
     response = requests.post(BASE_URL, json=test_data, headers=HEADERS)
