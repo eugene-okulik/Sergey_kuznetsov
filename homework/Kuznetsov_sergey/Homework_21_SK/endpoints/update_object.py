@@ -1,9 +1,8 @@
 import requests
-from status_checker import CheckerStatus
-from parameters import Parameters
+from base_endpoint import BaseEndpoint
 
 
-class UpdateObject(Parameters, CheckerStatus):
+class UpdateObject(BaseEndpoint):
 
     def update_object(self, payload, headers, object_id):
         self.response = requests.put(

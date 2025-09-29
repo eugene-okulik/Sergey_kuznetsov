@@ -22,8 +22,7 @@ def create_object_precondition(create_object_endpoint):
     body = {"name": "test object", "data": {"test": 100}}
     create_object_endpoint.create_object(body, BASE_HEADERS)
     object_id = create_object_endpoint.json["id"]
-    yield object_id
-    create_object_endpoint.delete_object(object_id, BASE_HEADERS)
+    return object_id
 
 
 @pytest.fixture()

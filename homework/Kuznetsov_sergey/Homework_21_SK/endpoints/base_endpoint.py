@@ -1,4 +1,7 @@
-class CheckerStatus:
+class BaseEndpoint:
+    url = "http://objapi.course.qa-practice.com/object"
+    response = None
+    json = None
 
     def __init__(self):
         self.response = None

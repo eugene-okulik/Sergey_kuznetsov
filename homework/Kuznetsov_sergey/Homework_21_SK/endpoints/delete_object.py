@@ -1,17 +1,12 @@
 import requests
-from status_checker import CheckerStatus
-from parameters import Parameters
+from base_endpoint import BaseEndpoint
 
 
-class DeleteObject(Parameters, CheckerStatus):
+class DeleteObject(BaseEndpoint):
 
     def delete_object(self, object_id, headers):
         self.response = requests.delete(
             url=f'{self.url}/{object_id}',
             headers=headers
         )
-        try:
-            self.json = self.response.json()
-        except ValueError:
-            self.json = None
         return self.response

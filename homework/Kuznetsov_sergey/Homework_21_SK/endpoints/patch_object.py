@@ -1,9 +1,8 @@
 import requests
-from status_checker import CheckerStatus
-from parameters import Parameters
+from base_endpoint import BaseEndpoint
 
 
-class PatchObject(Parameters, CheckerStatus):
+class PatchObject(BaseEndpoint):
 
     def patch_object(self, payload, headers, object_id):
         self.response = requests.patch(
