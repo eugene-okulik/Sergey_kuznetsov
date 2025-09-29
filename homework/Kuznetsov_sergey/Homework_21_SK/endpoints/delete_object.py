@@ -1,10 +1,9 @@
 import requests
+from status_checker import CheckerStatus
+from parameters import Parameters
 
 
-class DeleteObject:
-    url = "http://objapi.course.qa-practice.com/object"
-    response = None
-    json = None
+class DeleteObject(Parameters, CheckerStatus):
 
     def delete_object(self, object_id, headers):
         self.response = requests.delete(
@@ -16,6 +15,3 @@ class DeleteObject:
         except ValueError:
             self.json = None
         return self.response
-
-    def check_status_code_200(self):
-        assert self.response.status_code == 200
