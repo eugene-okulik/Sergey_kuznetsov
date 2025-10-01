@@ -12,6 +12,3 @@ class PatchObject(BaseEndpoint):
         )
         self.json = self.response.json()
         return self.response
-
-    def check_name(self, expected_name):
-        assert self.json["name"] == expected_name
