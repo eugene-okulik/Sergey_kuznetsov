@@ -43,7 +43,6 @@ def test_add_to_cart_some_items(item_page):
     item_page.button_add_cart_check()
 
 
-
 def test_check_cart_via_popup(category_page):
     category_page.open_page()
     category_page.add_item_to_cart()
