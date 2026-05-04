@@ -50,7 +50,7 @@ class ItemPage(BasePage):
         return self.page.text_content(self.error_text)
 
     def button_add_cart_check(self):
-        return self.page.locator(self.add_cart_button)
+        expect(self.page.locator(self.add_cart_button)).to_be_visible()
 
     def should_item_in_cart(self):
         expect(self.order_overview_tab_view()).to_be_attached()
